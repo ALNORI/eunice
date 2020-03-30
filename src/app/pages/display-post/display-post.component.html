@@ -1,0 +1,40 @@
+<div class="display-container">
+    <div class="display-post">
+        <video width="600" height="300" loop autoplay><source 
+            src="http://zujaja.se/wp-content/uploads/2020/03/20200315_185228.mp4"></video>
+
+
+        <div *ngIf="loading">
+            <app-content-loader [type]="2"></app-content-loader>
+        </div>
+        <div *ngIf="!loading" class="post">
+            <div class="post-featured-img">
+                <div class="featured" *ngIf="post.featured_media;">
+                    <img [src]="post._embedded['wp:featuredmedia']['0'].source_url">
+                </div>
+                <ng-template class="featured" #mydefault>
+                    <div class="featured">
+                        <img src="assets/img/no-image-found.jpg" alt="">
+                    </div>
+                </ng-template>
+            </div>
+
+
+            <div class="data1">
+                <p class="title">{{ post?.title.rendered }}</p>
+                <p class="category">love</p>
+            </div>
+            <div class="display-post">
+                <div [innerHTML]="post.content.rendered"></div>
+            </div>
+
+      
+        </div>
+    </div>
+    <div *ngIf="!loading" class="comment">
+        <app-comments [postId]="post.id"></app-comments>
+    </div>
+
+
+
+</div>

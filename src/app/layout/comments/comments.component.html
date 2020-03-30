@@ -1,0 +1,54 @@
+<div class="commentBody">
+    <div class="postedComments" *ngIf="postStatus === false">
+        <h3>Comments: </h3>
+        <div *ngFor="let postComment of postComments" class="usercomment">
+            <div [innerHTML]="postComment.content.rendered"></div>
+            <div><span>by {{postComment?.author_name}} </span> <span> | </span><span> {{ postComment?.date | date:'fullDate' }}</span></div>
+        </div>
+    </div>
+    
+    <!-- for comment status   //done    //sms_failed  //cancle  //cloud_off -->
+    <div *ngIf="commentstatustimingout" class="commentstatusmsg">        
+        <mat-icon aria-hidden="false" aria-label="icon">{{ request.icon }}</mat-icon>
+        <br>
+        <span>{{ request.message }}</span>
+    </div>
+
+    <!-- loader -->
+    <div *ngIf="showLoader" class="commentLoader">
+        <app-loader></app-loader>
+    </div>
+
+    
+
+    <div class="postYourComment" [ngStyle]="{display: formLoaderexpression ? 'none' : 'block'}">
+        <h3>Post a Comments: </h3>
+        <form (ngSubmit)="postComment()" [formGroup]="commentForm">
+            <input 
+                type="text" 
+                name="" 
+                id="" 
+                placeholder="Your Name"
+                formControlName="commentName"
+            />
+            <input 
+                type="email" 
+                name="" 
+                id="" 
+                placeholder="Your Email"
+                formControlName="commentEmail"
+            />
+            <span *ngIf="emailMsg">{{ emailMsg }}</span>
+            <textarea 
+                placeholder="Your Comment"
+                formControlName="commentText">
+            </textarea>
+            <br>
+            <button 
+                type="submit" 
+                [disabled]="!commentForm.valid">comment</button>
+        </form>
+        
+    </div>
+</div>
+
