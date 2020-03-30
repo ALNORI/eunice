@@ -10,7 +10,7 @@
 }
 @media screen and (min-width: 500px){
     .intro-container{
-        height: 100vh;
+        height: 15vh;
     }
     .intro-container img{
         height: 15vh;
